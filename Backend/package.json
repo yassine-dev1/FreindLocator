@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/passport": "^11.0.5",
+    "@nestjs/platform-socket.io": "^11.1.17",
+    "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/websockets": "^11.1.17",
+    "pg": "^8.20.0",
+    "typeorm": "^0.3.28"
+  }
+}
