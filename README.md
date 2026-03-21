@@ -440,3 +440,31 @@ Génération APK signed (Android)
 Configuration Apple Developer (iOS)
 
 Préparation stores
+
+
+
+/** {
+// //   "name": "friend-locato-backend",
+// //   "version": "0.1.0",
+// //   "description": "Backend for Friend Locato application",
+// //   "scripts": {
+// //     "build": "nest build",
+// //     "start": "nest start",
+// //     "start:dev": "nest start --watch",
+// //     "start:debug": "nest start --debug --watch",
+// //     "start:prod": "node dist/main",
+// //     "typeorm": "typeorm-ts-node-commonjs",
+// //     "migration:generate": "npm run typeorm -- migration:generate -d src/config/typeorm.config.ts",
+// //     "migration:run": "npm run typeorm -- migration:run -d src/config/typeorm.config.ts",
+// //     "migration:revert": "npm run typeorm -- migration:revert -d src/config/typeorm.config.ts"
+// //   },
+// //   "dependencies": {
+// //     "@nestjs/jwt": "^11.0.2",
+// //     "@nestjs/passport": "^11.0.5",
+// //     "@nestjs/platform-socket.io": "^11.1.17",
+// //     "@nestjs/typeorm": "^11.0.0",
+// //     "@nestjs/websockets": "^11.1.17",
+// //     "pg": "^8.20.0",
+// //     "typeorm": "^0.3.28"
+// //   }
+// **/ }

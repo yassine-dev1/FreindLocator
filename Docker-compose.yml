@@ -1,25 +1,69 @@
-version: '3.8'
 services:
   postgres:
-    image: postgres:14
+    image: postgres:15-alpine
+    container_name: friendlocato_postgres
+    restart: unless-stopped
     environment:
       POSTGRES_DB: friendlocato
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: ILISI
+      POSTGRES_PASSWORD: ILISI2025
+      POSTGRES_ROOT_PASSWORD: ILISI2025Root
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - friendlocato_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ILISI -d friendlocato"]  # Changé ici !
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  backend:
-    build: ./backend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
+  pgadmin:
+    image: dpage/pgadmin4:7
+    container_name: friendlocato_pgadmin
+    restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://admin:secret@postgres:5432/friendlocato
-      JWT_SECRET: votre_secret_jwt
+      PGADMIN_DEFAULT_EMAIL: admin@friendlocato.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - friendlocato_network
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  redis:
+    image: redis:7-alpine
+    container_name: friendlocato_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - friendlocato_network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  friendlocato_network:
+    driver: bridge
 
 volumes:
   postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+  redis_data:
+    driver: local
