@@ -465,6 +465,7 @@ cd FreindLocator
  cd Backend 
 
  ``` bash
+ npm install
  npm run start
  ```
  🛑🛑** backend est demaré sur : http://localhost:3000
