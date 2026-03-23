@@ -441,30 +441,39 @@ Configuration Apple Developer (iOS)
 
 Préparation stores
 
+# Demarage du projet 
+  ## clone du projet 
+``` bash
+git clone https://github.com/yassine-dev1/FreindLocator.git
+cd FreindLocator
+```
+  ## configuration du postgreeSql sur docker 
+``` bash
+./scripts.setup.sh
+```
+1- verifie que tous les conteneurs est bien isntallé :
+ **  postgres:15-alpine
+ **  dpage/pgadmin4:7
+ **  redis:7-alpine
+
+  🛑🛑** pstgreeSql est demaré sur : http://localhost:5432 ( consulté Backen/.env qui conteint les variables d'environnements)
+ 
+ 2- consulte dashbord pgAdmin
+ tapes dans le navigateur : http://localhost:5050
+
+ ## demarage du backend 
+ cd Backend 
+
+ ``` bash
+ npm run start
+ ```
+ 🛑🛑** backend est demaré sur : http://localhost:3000
+
+ !!!! dans le dossiers test/ il exist des test du websocket vous pouvez excuter :
+
+ ``` bash
+ node test/test-webSocket.js
+ ```` 
 
 
-/** {
-// //   "name": "friend-locato-backend",
-// //   "version": "0.1.0",
-// //   "description": "Backend for Friend Locato application",
-// //   "scripts": {
-// //     "build": "nest build",
-// //     "start": "nest start",
-// //     "start:dev": "nest start --watch",
-// //     "start:debug": "nest start --debug --watch",
-// //     "start:prod": "node dist/main",
-// //     "typeorm": "typeorm-ts-node-commonjs",
-// //     "migration:generate": "npm run typeorm -- migration:generate -d src/config/typeorm.config.ts",
-// //     "migration:run": "npm run typeorm -- migration:run -d src/config/typeorm.config.ts",
-// //     "migration:revert": "npm run typeorm -- migration:revert -d src/config/typeorm.config.ts"
-// //   },
-// //   "dependencies": {
-// //     "@nestjs/jwt": "^11.0.2",
-// //     "@nestjs/passport": "^11.0.5",
-// //     "@nestjs/platform-socket.io": "^11.1.17",
-// //     "@nestjs/typeorm": "^11.0.0",
-// //     "@nestjs/websockets": "^11.1.17",
-// //     "pg": "^8.20.0",
-// //     "typeorm": "^0.3.28"
-// //   }
-// **/ }
+
